@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stylish Calculator</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #8360c3, #2ebf91);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+
+    #display {
+      width: 100%;
+      height: 50px;
+      font-size: 24px;
+      text-align: right;
+      padding-right: 10px;
+      border: none;
+      border-bottom: 2px solid #2ebf91;
+      margin-bottom: 20px;
+      background-color: #f0f0f0;
+      border-radius: 10px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #2ebf91;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #249d79;
+    }
+
+    .equal {
+      background-color: #8360c3;
+    }
+
+    .equal:hover {
+      background-color: #684ca4;
+    }
+
+    .clear {
+      background-color: #ff4d4d;
+    }
+
+    .clear:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="display" disabled />
+    <div class="buttons">
+      <button onclick="press('7')">7</button>
+      <button onclick="press('8')">8</button>
+      <button onclick="press('9')">9</button>
+      <button onclick="press('/')">÷</button>
+
+      <button onclick="press('4')">4</button>
+      <button onclick="press('5')">5</button>
+      <button onclick="press('6')">6</button>
+      <button onclick="press('*')">×</button>
+
+      <button onclick="press('1')">1</button>
+      <button onclick="press('2')">2</button>
+      <button onclick="press('3')">3</button>
+      <button onclick="press('-')">−</button>
+
+      <button onclick="press('0')">0</button>
+      <button onclick="press('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button onclick="press('+')">+</button>
+
+      <button class="clear" onclick="clearDisplay()" style="grid-column: span 4;">C</button>
+    </div>
+  </div>
+
+  <script>
+    function press(val) {
+      document.getElementById("display").value += val;
+    }
+
+    function calculate() {
+      try {
+        let result = eval(document.getElementById("display").value);
+        document.getElementById("display").value = result;
+      } catch (e) {
+        document.getElementById("display").value = "Error";
+      }
+    }
+
+    function clearDisplay() {
+      document.getElementById("display").value = "";
+    }
+  </script>
+</body>
+</html>
